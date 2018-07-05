@@ -1,0 +1,38 @@
+version: '2.4'
+
+services:
+
+  sql:
+    image: registry.valtech.dk/sitecore-sqldev:9.0.180604-windowsservercore-1803
+    mem_limit: 2000MB
+    volumes:
+      - .\data\sql:C:\Data
+    ports:
+      - "38003:1433"
+
+  solr:
+    image: registry.valtech.dk/sitecore-solr:9.0.180604-nanoserver-1803
+    mem_limit: 1000MB
+    volumes:
+      - .\data\solr:C:\Data
+    ports:
+      - "38002:8983"
+
+  cm:
+    image: sitecore-logging-extensions:dev
+    build:
+      context: .\src\SitecoreLoggingExtensions.Website
+      dockerfile: Dockerfile
+    entrypoint: cmd /c "start /B powershell Watch-Directory C:/src C:/inetpub/sc -ExcludeFiles 'Web.config' & C:\\remote_debugger\\x64\\msvsmon.exe /noauth /anyuser /silent /nostatus /noclrwarn /nosecuritywarn /nofirewallwarn /nowowwarn /timeout:2147483646"
+    environment:
+      - DEV_ENVIRONMENT=1
+      - VBCSCOMPILER_TTL=604800
+    volumes:
+      - .\src\SitecoreLoggingExtensions.Website:C:\src
+      - .\data\cm:C:\inetpub\sc\App_Data\logs
+      - C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\Remote Debugger:C:\remote_debugger:ro
+    ports:
+      - "38001:80"
+    links:
+      - sql
+      - solr

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>SitecoreLoggingExtensions</id>
+    <version>2.0.0</version>
+    <authors>Per Manniche Bering</authors>
+    <projectUrl>https://github.com/sitecoreops/sitecore-logging-extensions</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Sitecore log4net JSON layout and UTF8 file appender without BOM (byte order mark).</description>
+    <tags>Sitecore, log4net</tags>
+  </metadata>
+  <files>
+    <file src="bin\Release\SitecoreLoggingExtensions.dll" target="lib\net462" />
+  </files>
+</package>
