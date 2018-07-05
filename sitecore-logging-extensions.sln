@@ -7,6 +7,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CFF6C4B4-8E97-4FA1-8C94-0F43F2F5F2EF}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		appveyor.yml = appveyor.yml
 		Build.ps1 = Build.ps1
 		docker-compose.yml = docker-compose.yml
 		nuget.config = nuget.config

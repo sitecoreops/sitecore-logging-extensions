@@ -1,0 +1,12 @@
+version: 1.0.{build}
+image: Visual Studio 2017
+configuration: Release
+cache:
+  - packages -> **\packages.config
+before_build:
+- cmd: nuget restore
+build:
+  project: sitecore-logging-extensions.sln
+  publish_nuget: true
+  parallel: true
+  verbosity: minimal

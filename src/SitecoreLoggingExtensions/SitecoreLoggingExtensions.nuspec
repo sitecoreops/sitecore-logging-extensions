@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>SitecoreLoggingExtensions</id>
-    <version>2.0.0</version>
+    <version>$version$</version>
     <authors>Per Manniche Bering</authors>
     <projectUrl>https://github.com/sitecoreops/sitecore-logging-extensions</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
