@@ -5,4 +5,4 @@ JSON formatted log4net layout and a UTF8 FileAppender that does not emit BOM (by
 ## Usage
 
 1. Install with: `PM> Install-Package SitecoreLoggingExtensions` 
-1. Configure log4net, see [src/SitecoreLoggingExtensions.Website/App_Config/Include/SitecoreLoggingExtensions.config](example config).
+1. Configure log4net, see [example config](src/SitecoreLoggingExtensions.Website/App_Config/Include/SitecoreLoggingExtensions.config).
