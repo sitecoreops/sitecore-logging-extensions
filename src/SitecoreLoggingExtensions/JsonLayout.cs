@@ -24,6 +24,7 @@ namespace SitecoreLoggingExtensions
         private readonly string _role;
         private readonly JsonSerializer _serializer;
         private readonly string _stack;
+        private readonly string _timestampFieldName;
 
         public JsonLayout() : this(false)
         {
@@ -36,6 +37,7 @@ namespace SitecoreLoggingExtensions
             _serializer = new JsonSerializer();
             _role = ConfigurationManager.AppSettings["role:define"].ToLowerInvariant();
             _stack = Settings.GetSetting("SitecoreLoggingExtensions.Data.StackName", string.Empty).ToLowerInvariant();
+            _timestampFieldName = Settings.GetSetting("SitecoreLoggingExtensions.Data.TimestampFieldName", "@timestamp").ToLowerInvariant();
             _logHosting = Settings.GetBoolSetting("SitecoreLoggingExtensions.Options.LogHosting", false);
             _logUserName = Settings.GetBoolSetting("SitecoreLoggingExtensions.Options.LogUserName", false);
             _logIdentity = Settings.GetBoolSetting("SitecoreLoggingExtensions.Options.LogIdentity", false);
@@ -98,7 +100,7 @@ namespace SitecoreLoggingExtensions
                 }
             }
 
-            data["sc.timestamp"] = loggingEvent.TimeStamp.ToString("O");
+            data[_timestampFieldName] = loggingEvent.TimeStamp.ToUniversalTime().ToString("O");
             data["sc.level"] = loggingEvent.Level?.Name;
             data["sc.thread"] = loggingEvent.ThreadName;
             data["sc.logger"] = loggingEvent.LoggerName;
